@@ -2,25 +2,24 @@ $(document).ready(init);
 var turnX=true;
 var champ='';
 var arr = [0,0,0,0,0,0,0,0]; //arr holds totals for combinations of three cells values
-//0-rdata
-//data-r2
+//0-r1
+//1-r2
 //2-r3
-//3-cdata
+//3-c1
 //4-c2
 //5-c3
-//6-\
-//7-/
+//6-diagonal\
+//7-diagonal/
 function init(){
   alert('X shall always go first. That is the way of tic tac toe');
   $('.col').on('click', clicked);
 
   function clicked(e){
-    console.log('hey');
     var $clicked = $(e.target);
     $clicked.text(turnX ? 'X' : 'O');
-    var data = (turnX ? 13 : 7);
+    var data = (turnX ? 13 : 7); //13 and 7 cause they're prime numbers and i tried % first but they work just as well now.
     turnX = !turnX;
-    debugger;
+    $('p').text(turnX ? 'X' : 'O' );
     switch($clicked.attr('id')) {
       case 'cell1':
         arr[0]+=data;
@@ -73,6 +72,9 @@ checkstatus();
       if(arr[i]===39){champ = 'X';}
       if(arr[i]===21){champ = 'Y';}
     }
-    if(champ){alert(champ+ ' is the CHAMPION!');}
+    if(champ){
+      $('p').text(champ+ ' is the CHAMPION!');
+      $('.col').off();
+  }
   }
 }
