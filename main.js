@@ -1,6 +1,7 @@
 $(document).ready(init);
 var turnX=true;
 var champ='';
+var count=0;
 var arr = [0,0,0,0,0,0,0,0]; //arr holds totals for combinations of three cells values
 //0-r1
 //1-r2
@@ -15,6 +16,7 @@ function init(){
   $('.col').on('click', clicked);
 
   function clicked(e){
+    count++
     var $clicked = $(e.target);
     $clicked.text(turnX ? 'X' : 'O');
     var data = (turnX ? 13 : 7); //13 and 7 cause they're prime numbers and i tried % first but they work just as well now.
@@ -76,5 +78,6 @@ checkstatus();
       $('p').text(champ+ ' is the CHAMPION!');
       $('.col').off();
   }
+    else if(count===9)$('p').text( 'It\'s a draw!');
   }
 }
